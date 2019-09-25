@@ -4,16 +4,20 @@
         switch($_SESSION["operator"])
         {
             case '+':
-                add();
+                $_SESSION["result"] = $_SESSION["current"] + $_SESSION["saved"];
+                $_SESSION["current"] = "";
             break;
             case '-':
-                sub();
+                $_SESSION["result"] = $_SESSION["saved"] - $_SESSION["current"];
+                $_SESSION["current"] = "";
             break;
             case '*':
-                multi();
+                $_SESSION["result"] = $_SESSION["current"] * $_SESSION["saved"];
+                $_SESSION["current"] = "";
             break;
             case '/':
-                div();
+                $_SESSION["result"] = $_SESSION["saved"] / $_SESSION["current"];
+                $_SESSION["current"] = "";
             break;
         }
         $_SESSION["operator"] = "";
@@ -25,22 +29,6 @@
         } else {
             $_SESSION["current"] .= $_GET["input"];
         }
-    }
-    function add() {
-        $_SESSION["result"] = $_SESSION["current"] + $_SESSION["saved"];
-        $_SESSION["current"] = "";
-    }
-    function sub() {
-        $_SESSION["result"] = $_SESSION["saved"] - $_SESSION["current"];
-        $_SESSION["current"] = "";
-    }
-    function multi() {
-        $_SESSION["result"] = $_SESSION["current"] * $_SESSION["saved"];
-        $_SESSION["current"] = "";
-    }
-    function div() {
-        $_SESSION["result"] = $_SESSION["saved"] / $_SESSION["current"];
-        $_SESSION["current"] = "";
     }
     function setOperator() {
         $_SESSION["saved"] += $_SESSION["current"];
